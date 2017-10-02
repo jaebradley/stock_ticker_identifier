@@ -1,5 +1,6 @@
 Django==1.11.5
-django-elasticsearch==0.5
-elasticsearch==5.4.0
+django-environ==0.4.4
+psycopg2==2.7.3.1
 pytz==2017.2
+six==1.11.0
 urllib3==1.22
