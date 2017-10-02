@@ -1,0 +1,5 @@
+Django==1.11.5
+django-elasticsearch==0.5
+elasticsearch==5.4.0
+pytz==2017.2
+urllib3==1.22
