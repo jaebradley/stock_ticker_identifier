@@ -12,7 +12,7 @@ class Company(models.Model):
     exchange = models.ForeignKey(Exchange, on_delete=models.CASCADE)
     name = models.TextField(null=False)
     ticker = models.TextField(null=False)
-    ipo_year = models.IntegerField()
+    ipo_year = models.IntegerField(null=True)
     sector = models.TextField()
     industry = models.TextField()
 
