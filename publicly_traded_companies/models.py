@@ -15,3 +15,6 @@ class Company(models.Model):
     ipo_year = models.IntegerField()
     sector = models.TextField()
     industry = models.TextField()
+
+    class Meta:
+        unique_together = ('exchange', 'ticker',)
