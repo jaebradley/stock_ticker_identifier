@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'publicly_traded_companies'
+    'publicly_traded_companies',
+    'rest_framework'
 ]
 
 MIDDLEWARE_CLASSES = [
