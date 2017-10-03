@@ -7,6 +7,9 @@ class Exchange(models.Model):
     name = models.TextField(null=False, unique=True)
     nickname = models.TextField()
 
+    def __str__(self):
+        return '{name} | {nickname}'.format(name=self.name, nickname=self.nickname)
+
 
 class Company(models.Model):
     exchange = models.ForeignKey(Exchange, on_delete=models.CASCADE)
@@ -18,3 +21,6 @@ class Company(models.Model):
 
     class Meta:
         unique_together = ('exchange', 'ticker',)
+
+    def __str__(self):
+        return '{exchange} | {name} | {ticker}'.format(exchange=self.exchange, name=self.name, ticker=self.ticker)
