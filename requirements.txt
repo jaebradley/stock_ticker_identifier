@@ -8,6 +8,7 @@ graphene==2.0.dev20170802065539
 graphene-django==2.0.dev2017083101
 graphql-core==2.0.dev20170801051721
 graphql-relay==0.4.5
+gunicorn==19.7.1
 idna==2.6
 iso8601==0.1.12
 Markdown==2.6.9
@@ -19,3 +20,4 @@ singledispatch==3.4.0.3
 six==1.11.0
 typing==3.6.2
 urllib3==1.22
+whitenoise==3.3.1
