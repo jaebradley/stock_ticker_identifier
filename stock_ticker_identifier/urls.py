@@ -16,10 +16,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.views.decorators.csrf import csrf_exempt
+
+from graphene_django.views import GraphQLView
 
 from rest_framework.routers import DefaultRouter
 
 from publicly_traded_companies.views import ExchangesView, ExchangeView, CompaniesView, CompanyView
+from publicly_traded_companies.schema import schema
 
 router = DefaultRouter()
 
@@ -30,5 +34,7 @@ urlpatterns = [
     url(r'^exchanges/(?P<pk>[0-9]+)$', ExchangeView.as_view(), name='exchange_detail'),
 
     url(r'^companies/$', CompaniesView.as_view(), name='companies_list'),
-    url(r'^companies/(?P<pk>[0-9]+)$', CompanyView.as_view(), name='company_detail')
+    url(r'^companies/(?P<pk>[0-9]+)$', CompanyView.as_view(), name='company_detail'),
+
+    url(r'^graphql', csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema)))
 ]
