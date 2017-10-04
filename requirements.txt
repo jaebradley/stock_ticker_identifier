@@ -12,7 +12,7 @@ gunicorn==19.7.1
 idna==2.6
 iso8601==0.1.12
 Markdown==2.6.9
-promise==2.1.dev0
+promise==2.1.dev20170724043809
 psycopg2==2.7.3.1
 pytz==2017.2
 requests==2.18.4
