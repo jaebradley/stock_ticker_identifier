@@ -20,7 +20,7 @@ class ExchangesView(ListAPIView):
 
 
 class ExchangeView(RetrieveAPIView):
-    queryset = Exchange.objects.all().order_by('name')
+    queryset = Exchange.objects.all()
     serializer_class = ExchangeSerializer
 
 
@@ -33,5 +33,5 @@ class CompaniesView(ListAPIView):
 
 
 class CompanyView(RetrieveAPIView):
-    queryset = Company.objects.all().order_by('name')
+    queryset = Company.objects.all()
     serializer_class = CompanySerializer
