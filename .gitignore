@@ -102,3 +102,4 @@ ENV/
 
 .idea/
 staticfiles/
+stock_ticker_identifier/.env
