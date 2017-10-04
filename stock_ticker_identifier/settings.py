@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'publicly_traded_companies',
-    'rest_framework'
+    'rest_framework',
+    'graphene_django',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -126,4 +127,8 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
+}
+
+GRAPHENE = {
+    'SCHEMA': 'publicly_traded_companies.schema.schema' # Where your Graphene schema lives
 }
