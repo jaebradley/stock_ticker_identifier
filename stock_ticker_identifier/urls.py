@@ -14,9 +14,11 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
 from django.views.decorators.csrf import csrf_exempt
+from django.conf.urls.static import static
 
 from graphene_django.views import GraphQLView
 
@@ -37,4 +39,4 @@ urlpatterns = [
     url(r'^companies/(?P<pk>[0-9]+)$', CompanyView.as_view(), name='company_detail'),
 
     url(r'^graphql', csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema)))
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

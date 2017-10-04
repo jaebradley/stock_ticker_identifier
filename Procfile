@@ -1,1 +1,1 @@
-web: gunicorn publicly_traded_companies.wsgi --log-file -
+web: gunicorn stock_ticker_identifier.wsgi --log-file -
