@@ -46,6 +46,7 @@ def insert_companies_for_exchange(exchange, url):
     # remove first row which are column headers
     companies.pop(0)
     for row in companies:
+        logger.info('Inserting company data: {data}'.format(data=row))
         name = row[1]
         ticker = row[0]
         ipo_year = row[5]
