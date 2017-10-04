@@ -20,7 +20,8 @@ def insert_exchanges():
 
     for exchange_name, exchange_nickname in exchanges.items():
         logger.info('Get or creating exchange: {exchange_name}'.format(exchange_name=exchange_name))
-        exchange, created = Exchange.objects.get_or_create(name=exchange_name, nickname=exchange_nickname)
+        exchange, created = Exchange.objects.update_or_create(name=exchange_name,
+                                                              defaults={'nickname': exchange_nickname})
         logger.info('Exchange: {exchange} was created: {created}'.format(exchange=exchange, created=created))
 
 
@@ -42,6 +43,9 @@ def insert_amex_companies():
 def insert_companies_for_exchange(exchange, url):
     logger.info('Inserting companies for exchange: {exchange} from URL: {url}'.format(exchange=exchange, url=url))
     content = requests.get(url)
+
+    content.raise_for_status()
+
     companies = list(csv.reader(content.text.splitlines(), delimiter=','))
     # remove first row which are column headers
     companies.pop(0)
@@ -57,6 +61,7 @@ def insert_companies_for_exchange(exchange, url):
             ipo_year = int(ipo_year)
         sector = row[6]
         industry = row[7]
-        company, created = Company.objects.get_or_create(exchange=exchange, name=name, ticker=ticker, ipo_year=ipo_year,
-                                                         sector=sector, industry=industry)
+        company, created = Company.objects.update_or_create(exchange=exchange, ticker=ticker, defaults={
+            'name': name, 'ipo_year': ipo_year, 'sector': sector, 'industry': industry
+        })
         logger.info('Company: {company} was created: {created}'.format(company=company, created=created))
