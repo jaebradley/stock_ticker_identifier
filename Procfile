@@ -1,0 +1,1 @@
+web: gunicorn publicly_traded_companies.wsgi --log-file -
