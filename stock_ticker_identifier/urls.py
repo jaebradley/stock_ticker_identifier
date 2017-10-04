@@ -17,6 +17,18 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from rest_framework.routers import DefaultRouter
+
+from publicly_traded_companies.views import ExchangesView, ExchangeView, CompaniesView, CompanyView
+
+router = DefaultRouter()
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(r'^exchanges/$', ExchangesView.as_view(), name='exchanges_list'),
+    url(r'^exchanges/(?P<pk>[0-9]+)$', ExchangeView.as_view(), name='exchange_detail'),
+
+    url(r'^companies/$', CompaniesView.as_view(), name='companies_list'),
+    url(r'^companies/(?P<pk>[0-9]+)$', CompanyView.as_view(), name='company_detail')
 ]
