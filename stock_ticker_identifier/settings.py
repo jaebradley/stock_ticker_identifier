@@ -45,11 +45,13 @@ INSTALLED_APPS = [
     'publicly_traded_companies',
     'rest_framework',
     'graphene_django',
+    'corsheaders'
 ]
 MIDDLEWARE_CLASSES = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -137,3 +139,8 @@ REST_FRAMEWORK = {
 GRAPHENE = {
     'SCHEMA': 'publicly_traded_companies.schema.schema' # Where your Graphene schema lives
 }
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+    '127.0.0.1:3000'
+)
