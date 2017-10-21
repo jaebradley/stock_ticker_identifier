@@ -53,15 +53,5 @@ def insert_companies_for_exchange(exchange, url):
         logger.info('Inserting company data: {data}'.format(data=row))
         name = row[1]
         ticker = row[0]
-        ipo_year = row[5]
-        # n/a is the value if no value exists
-        if ipo_year == 'n/a':
-            ipo_year = None
-        else:
-            ipo_year = int(ipo_year)
-        sector = row[6]
-        industry = row[7]
-        company, created = Company.objects.update_or_create(exchange=exchange, ticker=ticker, defaults={
-            'name': name, 'ipo_year': ipo_year, 'sector': sector, 'industry': industry
-        })
+        company, created = Company.objects.update_or_create(exchange=exchange, ticker=ticker, defaults={'name': name})
         logger.info('Company: {company} was created: {created}'.format(company=company, created=created))
