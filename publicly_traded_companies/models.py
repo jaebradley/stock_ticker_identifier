@@ -12,11 +12,11 @@ class Exchange(models.Model):
 
 
 class Industry(models.Model):
-    name = models.TextField(null=False)
+    name = models.TextField(null=True)
 
 
 class Sector(models.Model):
-    name = models.TextField(null=False)
+    name = models.TextField(null=True)
 
 
 class Company(models.Model):
