@@ -2,10 +2,14 @@ import csv
 import requests
 import logging
 import time
+import environ
 
 from publicly_traded_companies.models import Exchange, Company, Industry, Sector
 from publicly_traded_companies.constants import DOWNLOAD_NASDAQ_COMPANIES_URL, DOWNLOAD_NYSE_COMPANIES_URL, \
     DOWNLOAD_AMEX_COMPANIES_URL
+
+env = environ.Env(DEBUG=(bool, False),)
+environ.Env.read_env()
 
 logging.basicConfig()
 logger = logging.getLogger()
@@ -63,7 +67,8 @@ def insert_companies_for_exchange(exchange, url):
 
 
 def insert_company_details(company):
-    time.sleep(0.5)
+    time.sleep(float(env('REQUEST_DELAY')))
+
     r = requests.get(url='https://query2.finance.yahoo.com/v10/finance/quoteSummary/{ticker}'.format(ticker=company.ticker),
 
                      params={
@@ -73,6 +78,7 @@ def insert_company_details(company):
     try:
         raw_company_details = r.json()
     except ValueError as e:
+        # throws when response does not have valid JSON
         logger.error(e)
         return
 
@@ -83,6 +89,7 @@ def insert_company_details(company):
             and raw_company_details['quoteSummary']['result'] is not None \
             and len(raw_company_details['quoteSummary']['result']) == 1 \
             and 'assetProfile' in raw_company_details['quoteSummary']['result'][0]:
+
         company_details = raw_company_details['quoteSummary']['result'][0]['assetProfile']
 
         industry, created = Industry.objects.get_or_create(name=company_details.get('industry'))
