@@ -69,7 +69,7 @@ tickers on the NASDAQ, NYSE, and AMEX](http://www.nasdaq.com/screening/company-l
 * `GET`
 * No query parameters, but takes a `Company` `id` parameter in the URL
 
-### [GraphQL Endpoint][https://stock-ticker-identifier.herokuapp.com/graphql]
+### [GraphQL Endpoint](https://stock-ticker-identifier.herokuapp.com/graphql)
 * [GraphQL Documentation](http://graphql.org/)
 * [Graphiql](https://github.com/graphql/graphiql)
 
