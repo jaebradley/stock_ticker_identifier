@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, URLField
 
 
 from publicly_traded_companies.models import Exchange, Company, Industry, Sector
@@ -23,6 +23,10 @@ class SectorSerializer(ModelSerializer):
 
 
 class CompanySerializer(ModelSerializer):
+    exchange = ExchangeSerializer()
+    sector = SectorSerializer()
+    industry = IndustrySerializer()
+
     class Meta:
         model = Company()
         fields = (
