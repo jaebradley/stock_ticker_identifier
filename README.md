@@ -77,4 +77,8 @@ tickers on the NASDAQ, NYSE, and AMEX](http://www.nasdaq.com/screening/company-l
 
 ![alt-text](https://i.imgur.com/yZ4r4Ba.png)
 
+### [Simple React Example Using This API](https://jaebradley.github.com/company-ticker-search)
+
+![alt-text](https://imgur.com/UVzQ9Sf.png)
+
 
