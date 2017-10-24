@@ -2,8 +2,8 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.filters import SearchFilter
 
-from publicly_traded_companies.models import Exchange, Company
-from publicly_traded_companies.serializers import ExchangeSerializer, CompanySerializer
+from publicly_traded_companies.models import Exchange, Company, Industry
+from publicly_traded_companies.serializers import ExchangeSerializer, CompanySerializer, IndustrySerializer
 
 
 class StandardLimitOffsetPagination(LimitOffsetPagination):
@@ -22,6 +22,19 @@ class ExchangesView(ListAPIView):
 class ExchangeView(RetrieveAPIView):
     queryset = Exchange.objects.all()
     serializer_class = ExchangeSerializer
+
+
+class IndustriesView(ListAPIView):
+    queryset = Industry.objects.all().order_by('name')
+    serializer_class = IndustrySerializer
+    pagination_class = StandardLimitOffsetPagination
+    filter_backends = (SearchFilter,)
+    search_fields = ('name',)
+
+
+class IndustryView(RetrieveAPIView):
+    queryset = Industry.objects.all()
+    serializer_class = IndustrySerializer
 
 
 class CompaniesView(ListAPIView):
