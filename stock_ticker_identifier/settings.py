@@ -143,5 +143,6 @@ GRAPHENE = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
     '127.0.0.1:3000',
-    'https://jaebradley.github.io'
+    'https://jaebradley.github.io',
+    'jaebradley.github.io'
 )
